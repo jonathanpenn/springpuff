@@ -1,0 +1,11 @@
+
+PODS:
+- Novocaine (0.0.1)
+
+DEPENDENCIES:
+- Novocaine
+
+SPEC CHECKSUMS:
+  Novocaine: 8c88e2e1441f65b529ebc1d2a5c1e7e5635cd9fd
+
+COCOAPODS: 0.16.0

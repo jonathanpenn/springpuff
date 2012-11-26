@@ -1,0 +1,370 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<constant type='i' name='RingBuffer' declared_type='int'/>
+<enum value='4' name='kMaxNumChannels'/>
+<function name='CheckError'>
+<arg type='l' name='error' declared_type='OSStatus'/>
+<arg const='true' type='*' name='operation' declared_type='char*'/>
+<retval type='v' declared_type='void'/>
+</function>
+<function name='inputCallback'>
+<arg type='^v' name='inRefCon' declared_type='void*'/>
+<arg type='^I' name='ioActionFlags' declared_type='AudioUnitRenderActionFlags*'/>
+<arg const='true' type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}' name='inTimeStamp' declared_type='AudioTimeStamp*'/>
+<arg type='L' name='inOutputBusNumber' declared_type='UInt32'/>
+<arg type='L' name='inNumberFrames' declared_type='UInt32'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}' name='ioData' declared_type='AudioBufferList*'/>
+<retval type='l' declared_type='OSStatus'/>
+</function>
+<function name='renderCallback'>
+<arg type='^v' name='inRefCon' declared_type='void*'/>
+<arg type='^I' name='ioActionFlags' declared_type='AudioUnitRenderActionFlags*'/>
+<arg const='true' type='^{AudioTimeStamp=dQdQ{SMPTETime=ssIIIssss}II}' name='inTimeStamp' declared_type='AudioTimeStamp*'/>
+<arg type='L' name='inOutputBusNumber' declared_type='UInt32'/>
+<arg type='L' name='inNumberFrames' declared_type='UInt32'/>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}' name='ioData' declared_type='AudioBufferList*'/>
+<retval type='l' declared_type='OSStatus'/>
+</function>
+<function name='sessionInterruptionListener'>
+<arg type='^v' name='inClientData' declared_type='void*'/>
+<arg type='L' name='inInterruption' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</function>
+<function name='sessionPropertyListener'>
+<arg type='^v' name='inClientData' declared_type='void*'/>
+<arg type='L' name='inID' declared_type='AudioSessionPropertyID'/>
+<arg type='L' name='inDataSize' declared_type='UInt32'/>
+<arg const='true' type='^v' name='inData' declared_type='void*'/>
+<retval type='v' declared_type='void'/>
+</function>
+<class name='AudioFileReader'>
+<method selector='audioFileURL'>
+<retval type='@' declared_type='NSURL*'/>
+</method>
+<method selector='duration'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='getCurrentTime'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='initWithAudioFileURL:samplingRate:numChannels:'>
+<arg type='@' name='urlToAudioFile' index='0' declared_type='NSURL*'/>
+<arg type='f' name='thisSamplingRate' index='1' declared_type='float'/>
+<arg type='L' name='thisNumChannels' index='2' declared_type='UInt32'/>
+<retval type='@' declared_type='id'/>
+</method>
+<method selector='latency'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='numChannels'>
+<retval type='L' declared_type='UInt32'/>
+</method>
+<method selector='pause'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='play'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='playing'>
+<retval type='B' declared_type='BOOL'/>
+</method>
+<method selector='readerBlock'>
+<retval type='@?' function_pointer='true' declared_type='InputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</retval>
+</method>
+<method selector='retrieveFreshAudio:numFrames:numChannels:'>
+<arg type='^f' name='buffer' index='0' declared_type='float*'/>
+<arg type='L' name='thisNumFrames' index='1' declared_type='UInt32'/>
+<arg type='L' name='thisNumChannels' index='2' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='samplingRate'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='setAudioFileURL:'>
+<arg type='@' name='audioFileURL' index='0' declared_type='NSURL*'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setCurrentTime:'>
+<arg type='f' name='currentTime' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setDuration:'>
+<arg type='f' name='duration' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setLatency:'>
+<arg type='f' name='latency' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setNumChannels:'>
+<arg type='L' name='numChannels' index='0' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setPlaying:'>
+<arg type='B' name='playing' index='0' declared_type='BOOL'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setReaderBlock:'>
+<arg type='@?' function_pointer='true' name='readerBlock' index='0' declared_type='InputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</arg>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setSamplingRate:'>
+<arg type='f' name='samplingRate' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+</class>
+<class name='AudioFileWriter'>
+<method selector='audioFileURL'>
+<retval type='@' declared_type='NSURL*'/>
+</method>
+<method selector='currentTime'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='duration'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='initWithAudioFileURL:samplingRate:numChannels:'>
+<arg type='@' name='urlToAudioFile' index='0' declared_type='NSURL*'/>
+<arg type='f' name='thisSamplingRate' index='1' declared_type='float'/>
+<arg type='L' name='thisNumChannels' index='2' declared_type='UInt32'/>
+<retval type='@' declared_type='id'/>
+</method>
+<method selector='latency'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='numChannels'>
+<retval type='L' declared_type='UInt32'/>
+</method>
+<method selector='pause'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='record'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='recording'>
+<retval type='B' declared_type='BOOL'/>
+</method>
+<method selector='samplingRate'>
+<retval type='f' declared_type='float'/>
+</method>
+<method selector='setAudioFileURL:'>
+<arg type='@' name='audioFileURL' index='0' declared_type='NSURL*'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setDuration:'>
+<arg type='f' name='duration' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setLatency:'>
+<arg type='f' name='latency' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setNumChannels:'>
+<arg type='L' name='numChannels' index='0' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setRecording:'>
+<arg type='B' name='recording' index='0' declared_type='BOOL'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setSamplingRate:'>
+<arg type='f' name='samplingRate' index='0' declared_type='float'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setWriterBlock:'>
+<arg type='@?' function_pointer='true' name='writerBlock' index='0' declared_type='InputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</arg>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='writeNewAudio:numFrames:numChannels:'>
+<arg type='^f' name='newData' index='0' declared_type='float*'/>
+<arg type='L' name='thisNumFrames' index='1' declared_type='UInt32'/>
+<arg type='L' name='thisNumChannels' index='2' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='writerBlock'>
+<retval type='@?' function_pointer='true' declared_type='InputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</retval>
+</method>
+</class>
+<class name='Novocaine'>
+<method class_method='true' selector='audioManager'>
+<retval type='@' declared_type='Novocaine*'/>
+</method>
+<method selector='checkAudioSource'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='checkSessionProperties'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='ifAudioInputIsAvailableThenSetupAudioSession'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='inData'>
+<retval type='^f' declared_type='float*'/>
+</method>
+<method selector='inputAvailable'>
+<retval type='B' declared_type='BOOL'/>
+</method>
+<method selector='inputBlock'>
+<retval type='@?' function_pointer='true' declared_type='InputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</retval>
+</method>
+<method selector='inputBuffer'>
+<retval type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}' declared_type='AudioBufferList*'/>
+</method>
+<method selector='inputFormat'>
+<retval type='{AudioStreamBasicDescription=dIIIIIIII}' declared_type='AudioStreamBasicDescription'/>
+</method>
+<method selector='inputRoute'>
+<retval type='@' declared_type='NSString*'/>
+</method>
+<method selector='inputUnit'>
+<retval type='^{OpaqueAudioComponentInstance=}' declared_type='AudioUnit'/>
+</method>
+<method selector='isInterleaved'>
+<retval type='B' declared_type='BOOL'/>
+</method>
+<method selector='numBytesPerSample'>
+<retval type='L' declared_type='UInt32'/>
+</method>
+<method selector='numInputChannels'>
+<retval type='L' declared_type='UInt32'/>
+</method>
+<method selector='numOutputChannels'>
+<retval type='L' declared_type='UInt32'/>
+</method>
+<method selector='outData'>
+<retval type='^f' declared_type='float*'/>
+</method>
+<method selector='outputBlock'>
+<retval type='@?' function_pointer='true' declared_type='OutputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</retval>
+</method>
+<method selector='outputFormat'>
+<retval type='{AudioStreamBasicDescription=dIIIIIIII}' declared_type='AudioStreamBasicDescription'/>
+</method>
+<method selector='outputUnit'>
+<retval type='^{OpaqueAudioComponentInstance=}' declared_type='AudioUnit'/>
+</method>
+<method selector='pause'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='play'>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='playing'>
+<retval type='B' declared_type='BOOL'/>
+</method>
+<method selector='samplingRate'>
+<retval type='d' declared_type='Float64'/>
+</method>
+<method selector='setInData:'>
+<arg type='^f' name='inData' index='0' declared_type='float*'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setInputAvailable:'>
+<arg type='B' name='inputAvailable' index='0' declared_type='BOOL'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setInputBlock:'>
+<arg type='@?' function_pointer='true' name='inputBlock' index='0' declared_type='InputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</arg>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setInputBuffer:'>
+<arg type='^{AudioBufferList=I[1{AudioBuffer=II^v}]}' name='inputBuffer' index='0' declared_type='AudioBufferList*'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setInputFormat:'>
+<arg type='{AudioStreamBasicDescription=dIIIIIIII}' name='inputFormat' index='0' declared_type='AudioStreamBasicDescription'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setInputRoute:'>
+<arg type='@' name='inputRoute' index='0' declared_type='NSString*'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setInputUnit:'>
+<arg type='^{OpaqueAudioComponentInstance=}' name='inputUnit' index='0' declared_type='AudioUnit'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setIsInterleaved:'>
+<arg type='B' name='isInterleaved' index='0' declared_type='BOOL'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setNumBytesPerSample:'>
+<arg type='L' name='numBytesPerSample' index='0' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setNumInputChannels:'>
+<arg type='L' name='numInputChannels' index='0' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setNumOutputChannels:'>
+<arg type='L' name='numOutputChannels' index='0' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setOutData:'>
+<arg type='^f' name='outData' index='0' declared_type='float*'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setOutputBlock:'>
+<arg type='@?' function_pointer='true' name='outputBlock' index='0' declared_type='OutputBlock'>
+<arg type='^f' declared_type='float*'/>
+<arg type='L' declared_type='UInt32'/>
+<arg type='L' declared_type='UInt32'/>
+<retval type='v' declared_type='void'/>
+</arg>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setOutputFormat:'>
+<arg type='{AudioStreamBasicDescription=dIIIIIIII}' name='outputFormat' index='0' declared_type='AudioStreamBasicDescription'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setOutputUnit:'>
+<arg type='^{OpaqueAudioComponentInstance=}' name='outputUnit' index='0' declared_type='AudioUnit'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setPlaying:'>
+<arg type='B' name='playing' index='0' declared_type='BOOL'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setSamplingRate:'>
+<arg type='d' name='samplingRate' index='0' declared_type='Float64'/>
+<retval type='v' declared_type='void'/>
+</method>
+<method selector='setupAudio'>
+<retval type='v' declared_type='void'/>
+</method>
+</class>
+</signatures>

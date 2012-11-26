@@ -1,0 +1,116 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<struct type='{_TISpringLoadedViewDistanceLimits=&quot;negativeX&quot;f&quot;positiveX&quot;f&quot;negativeY&quot;f&quot;positiveY&quot;f}' name='TISpringLoadedViewDistanceLimits'>
+<field declared_type='CGFloat' type='f' name='negativeX'/>
+<field declared_type='CGFloat' type='f' name='positiveX'/>
+<field declared_type='CGFloat' type='f' name='negativeY'/>
+<field declared_type='CGFloat' type='f' name='positiveY'/>
+</struct>
+<function name='TISpringLoadedViewDistanceLimitsMake'>
+<arg declared_type='CGFloat' type='f' name='nX'/>
+<arg declared_type='CGFloat' type='f' name='pX'/>
+<arg declared_type='CGFloat' type='f' name='nY'/>
+<arg declared_type='CGFloat' type='f' name='pY'/>
+<retval declared_type='TISpringLoadedViewDistanceLimits' type='{_TISpringLoadedViewDistanceLimits=ffff}'/>
+</function>
+<class name='TISpringLoadedView'>
+<method selector='dampingCoefficient'>
+<retval declared_type='CGFloat' type='f'/>
+</method>
+<method selector='inheritsPanVelocity'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='leftAnchoredView'>
+<retval declared_type='TISpringLoadedView*' type='@'/>
+</method>
+<method selector='mass'>
+<retval declared_type='CGFloat' type='f'/>
+</method>
+<method selector='panDistanceLimits'>
+<retval declared_type='TISpringLoadedViewDistanceLimits' type='{_TISpringLoadedViewDistanceLimits=ffff}'/>
+</method>
+<method selector='panDragCoefficient'>
+<retval declared_type='CGFloat' type='f'/>
+</method>
+<method selector='pannedBlock'>
+<retval declared_type='TISpringLoadedViewPannedBlock' type='@?' function_pointer='true'>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='BOOL' type='B'/>
+<retval declared_type='void' type='v'/>
+</retval>
+</method>
+<method selector='panning'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='restCenter'>
+<retval declared_type='CGPoint' type='{CGPoint=ff}'/>
+</method>
+<method selector='rightAnchoredView'>
+<retval declared_type='TISpringLoadedView*' type='@'/>
+</method>
+<method selector='setDampingCoefficient:'>
+<arg declared_type='CGFloat' type='f' name='dampingCoefficient' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setInheritsPanVelocity:'>
+<arg declared_type='BOOL' type='B' name='inheritsPanVelocity' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setLeftAnchoredView:'>
+<arg declared_type='TISpringLoadedView*' type='@' name='leftAnchoredView' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setMass:'>
+<arg declared_type='CGFloat' type='f' name='mass' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPanDistanceLimits:'>
+<arg declared_type='TISpringLoadedViewDistanceLimits' type='{_TISpringLoadedViewDistanceLimits=ffff}' name='panDistanceLimits' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPanDragCoefficient:'>
+<arg declared_type='CGFloat' type='f' name='panDragCoefficient' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPannedBlock:'>
+<arg declared_type='TISpringLoadedViewPannedBlock' type='@?' name='pannedBlock' index='0' function_pointer='true'>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='CGPoint' type='{CGPoint=ff}'/>
+<arg declared_type='BOOL' type='B'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setRestCenter:'>
+<arg declared_type='CGPoint' type='{CGPoint=ff}' name='restCenter' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setRightAnchoredView:'>
+<arg declared_type='TISpringLoadedView*' type='@' name='rightAnchoredView' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSpringConstant:'>
+<arg declared_type='CGFloat' type='f' name='springConstant' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSpringEnabled:'>
+<arg declared_type='BOOL' type='B' name='springEnabled' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='simulateSpringWithDisplayLink:'>
+<arg declared_type='CADisplayLink*' type='@' name='displayLink' index='0'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='springConstant'>
+<retval declared_type='CGFloat' type='f'/>
+</method>
+<method selector='springEnabled'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+</class>
+</signatures>
