@@ -1,12 +1,9 @@
 class AppDelegate
-  attr_accessor :window, :displayLink
-
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    self.window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    window.rootViewController = MainViewController.controller
-    window.makeKeyAndVisible
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.rootViewController = MainViewController.alloc.init
+    @window.makeKeyAndVisible
     true
   end
-
 end
 
