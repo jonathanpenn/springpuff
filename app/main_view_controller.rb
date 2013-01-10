@@ -1,10 +1,6 @@
 class MainViewController < UIViewController
   attr_accessor :starField, :springView, :displayLink
 
-  def self.controller
-    alloc.init
-  end
-
   def viewDidLoad
     super
     setupSpringView
