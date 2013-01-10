@@ -7,7 +7,7 @@ class MySpringView < TISpringLoadedView
   def self.build
     self.alloc.initWithFrame([[0,0],[60,60]]).tap do |s|
       s.backgroundColor = UIColor.redColor
-      s.layer.cornerRadius = 5
+      s.layer.cornerRadius = 10
       s.layer.masksToBounds = true
 
       s.springConstant = 500
