@@ -4,7 +4,8 @@ class MainViewController < UIViewController
   def viewDidLoad
     super
     setupSpringView
-    initAudio
+    setupDisplayLink
+    listenToAudio
   end
 
   def shouldAutorotate
@@ -21,18 +22,22 @@ class MainViewController < UIViewController
     springView.restCenter = [CGRectGetMidX(view.bounds),
                              CGRectGetMidY(view.bounds)]
     view.addSubview(springView)
-    self.displayLink = CADisplayLink.displayLinkWithTarget(
-      self,
-      selector:"displayLinkTick:")
-    displayLink.addToRunLoop(
-      NSRunLoop.currentRunLoop,
-      forMode: NSRunLoopCommonModes)
   end
 
 
   #
   # Display Link
   #
+
+  def setupDisplayLink
+    self.displayLink = CADisplayLink.displayLinkWithTarget(
+      self,
+      selector:"displayLinkTick:")
+
+    displayLink.addToRunLoop(
+      NSRunLoop.currentRunLoop,
+      forMode: NSRunLoopCommonModes)
+  end
 
   def displayLinkTick displayLink
     springView.simulateSpringWithDisplayLink(displayLink)
@@ -43,7 +48,7 @@ class MainViewController < UIViewController
   # Audio Processing
   #
 
-  def initAudio
+  def listenToAudio
     audioManager = Novocaine.audioManager
     audioManager.setInputBlock(-> newAudio_ptr, numSamples, numChannels {
       max = 0
