@@ -18,7 +18,26 @@ TISpringLoadedViewDistanceLimits TISpringLoadedViewDistanceLimitsMake(CGFloat nX
     return limits;
 }
 
-@interface TISpringLoadedView (Private)
+@interface TISpringLoadedView () {
+    BOOL springEnabled;
+
+    CGPoint restCenter;
+    CGFloat springConstant;
+    CGFloat dampingCoefficient;
+    CGFloat mass;
+    CGPoint velocity;
+
+    TISpringLoadedViewDistanceLimits panDistanceLimits;
+    TISpringLoadedViewPannedBlock pannedBlock;
+    CGFloat panDragCoefficient;
+    BOOL inheritsPanVelocity;
+
+    UIPanGestureRecognizer * panGestureRecognizer;
+
+    TISpringLoadedView * leftAnchoredView;
+    TISpringLoadedView * rightAnchoredView;
+}
+
 - (void)positionLeftAnchoredViewsWithRecognizer:(UIPanGestureRecognizer *)recognizer;
 - (void)positionRightAnchoredViewsWithRecognizer:(UIPanGestureRecognizer *)recognizer;
 @end
