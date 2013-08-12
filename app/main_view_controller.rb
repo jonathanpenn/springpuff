@@ -63,6 +63,7 @@ class MainViewController < UIViewController
       springView.destScale = 1 + max
       springView.destAlpha = 0.6 + max
     })
+    audioManager.play
   end
 
 end
