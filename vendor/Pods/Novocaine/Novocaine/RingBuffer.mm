@@ -25,8 +25,6 @@
 #include "RingBuffer.h"
 
 
-// TODO: teardown function to release mData
-
 RingBuffer::RingBuffer(SInt64 bufferLength, SInt64 numChannels) : 
 mSizeOfBuffer(bufferLength)
 {
@@ -46,6 +44,13 @@ mSizeOfBuffer(bufferLength)
         mNumUnreadFrames[i] = 0;
 	}
 		
+}
+
+RingBuffer::~RingBuffer() 
+{
+    for (int i=0; i<mNumChannels; i++) {
+        free(mData[i]);
+    }
 }
 
 void RingBuffer::AddNewSInt16AudioBuffer(const AudioBuffer aBuffer)
@@ -154,6 +159,49 @@ void RingBuffer::AddNewInterleavedFloatData(const float *newData, const SInt64 n
 	}
 	
 	
+}
+
+void RingBuffer::FetchFreshData2(float *outData, SInt64 numFrames, SInt64 whichChannel, SInt64 stride)
+{
+
+    if (mLastWrittenIndex[whichChannel] - numFrames >= 0) { // if we're requesting samples that won't go off the left end of the ring buffer, then go ahead and copy them all out.
+        
+        UInt32 idx = mLastWrittenIndex[whichChannel] - numFrames;
+        float zero = 0.0f;
+        vDSP_vsadd(&mData[whichChannel][idx], 
+                   1, 
+                   &zero, 
+                   outData, 
+                   stride, 
+                   numFrames);
+    }
+    
+    else { // if we will overrun, then we need to do two separate copies.
+        
+        // The copy that bleeds off the left, and cycles back to the right of the ring buffer
+        int numSamplesInFirstCopy = numFrames - mLastWrittenIndex[whichChannel];
+        // The copy that starts at the beginning, and proceeds to the end.
+        int numSamplesInSecondCopy = mLastWrittenIndex[whichChannel];
+        
+        
+        float zero = 0.0f;
+        UInt32 firstIndex = mSizeOfBuffer - numSamplesInFirstCopy;
+        vDSP_vsadd(&mData[whichChannel][firstIndex],
+                   1, 
+                   &zero, 
+                   &outData[0], 
+                   stride, 
+                   numSamplesInFirstCopy);
+
+        vDSP_vsadd(&mData[whichChannel][0],
+                   1, 
+                   &zero, 
+                   &outData[numSamplesInFirstCopy*stride],
+                   stride, 
+                   numSamplesInSecondCopy);
+        
+    }
+
 }
 
 void RingBuffer::FetchData(float *outData, SInt64 numFrames, SInt64 whichChannel, SInt64 stride)

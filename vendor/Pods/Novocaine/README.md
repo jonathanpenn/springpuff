@@ -10,6 +10,7 @@ Novocaine *audioManager = [Novocaine audioManager];
 	// Audio comes in interleaved, so,
 	// if numChannels = 2, newAudio[0] is channel 1, newAudio[1] is channel 2, newAudio[2] is channel 1, etc.
 }];
+[audioManager play];
 ```
 
 ### Playing Audio
@@ -18,6 +19,7 @@ Novocaine *audioManager = [Novocaine audioManager];
 [audioManager setOutputBlock:^(float *audioToPlay, UInt32 numSamples, UInt32 numChannels) {
 	// All you have to do is put your audio into "audioToPlay".
 }];
+[audioManager play];
 ```
 
 ### Does anybody actually use it?
