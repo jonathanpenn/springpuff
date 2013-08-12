@@ -12,6 +12,6 @@ Motion::Project::App.setup do |app|
   app.vendor_project('vendor/TISpringLoadedViews', :static)
 
   app.pods do
-    pod "Novocaine"
+    pod 'Novocaine', :podspec => 'Novocaine.podspec'
   end
 end
