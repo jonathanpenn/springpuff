@@ -1,5 +1,5 @@
 class MainViewController < UIViewController
-  attr_accessor :starField, :springView, :displayLink
+  attr_accessor :springView, :displayLink
 
   def viewDidLoad
     super
